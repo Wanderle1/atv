@@ -44,7 +44,7 @@ const listarPacientePorData= require('./paciente/listarPacientePorData')
 app.get('/pacientes/dataNascimento', listarPacientePorData)
 
 const listarMedicosDoPaciente= require('./paciente/listarMedicosDoPaciente')
-app.get('/pacientes/medicos', listarMedicosDoPaciente)
+app.get('/pacientes/idPaciente', listarMedicosDoPaciente)
 
 const adicionarConsulta = require('./consulta/adicionarConsulta')
 app.post('/consultas', adicionarConsulta)

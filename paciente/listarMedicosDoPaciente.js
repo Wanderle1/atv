@@ -1,4 +1,4 @@
-let {consultas, pacientes} = require('../data')
+let {consultas, medicos} = require('../data')
 
 function listarMedicosDoPaciente(req, res){
     let {idPaciente}= req.query
@@ -6,10 +6,13 @@ function listarMedicosDoPaciente(req, res){
     const Paciente = consultas.filter(p => p.idPaciente == idPaciente)
 
     if(Paciente.length === 0){
-        res.status(404).send('medicos do paciente não encontrado!')
+        return res.status(404).send('medicos do paciente não encontrado!')
     }
 
-    let medicoDoPaciente= paciente.idMedico
+    const idMedico= Paciente.map(p => p.idMedico)
+    const medico= medicos.filter(m => idMedico.includes(m.id))
+    const medicoDoPaciente= medico.map(m => ({nome: m.nome, especialidade: m.especialidade}))
+
     res.status(202).send({MedicosDoPaciente: medicoDoPaciente})
     
 }
